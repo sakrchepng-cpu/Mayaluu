@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffe6eb, #ffd6e0);
+    font-family: "Arial", sans-serif;
+    overflow: hidden;
+}
+
+.box {
+    text-align: center;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+h1 {
+    color: #e6005c;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#yes {
+    background-color: #ff4d79;
+    color: white;
+}
+
+#no {
+    background-color: #999;
+    color: white;
+    position: absolute;
+}
+
+#gif {
+    display: none;
+    margin-top: 20px;
+}
+
+#gif img {
+    width: 250px;
+    border-radius: 15px;
+}
+
+/* floating hearts */
+.heart {
+    position: absolute;
+    color: #ff4d79;
+    font-size: 20px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>Will you be my Valentine? 💕</h1>
+
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 😜</button>
+
+    <div id="gif">
+        <h2>You had no choice 😏💘</h2>
+        <img src="https://media.giphy.com/media/I0MYt5jPR6QX5pnqM/giphy.gif" alt="Cute Gif">
+    </div>
+</div>
+
+<script>
+const noButton = document.getElementById("no");
+const yesButton = document.getElementById("yes");
+const gifDiv = document.getElementById("gif");
+
+// Move "No" button randomly
+noButton.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noButton.style.left = x + "px";
+    noButton.style.top = y + "px";
+});
+
+// Show gif on Yes
+yesButton.addEventListener("click", () => {
+    gifDiv.style.display = "block";
+});
+
+// Create floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}, 300);
+</script>
+
+</body>
+</html>
